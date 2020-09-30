@@ -4,8 +4,23 @@
     </head>
 
     <body>
+        <form method="POST" action="/">
+            {% csrf_token %}
+            {{ form.title }}
+            <input type="submit" name="Add New Task"> 
+        </form>
+
         {% for task in tasks %}
-            <p>{{task}}</p>
+        <div>
+            <a href="{% url 'edit_task' task.pk %}">Edit</a>
+            <a href="{% url 'delete_task' task.pk %}">Delete</a>
+            {% if task.status == True %}
+            <strike><p>{{ task }}</p></strike>
+            {% else %}
+            <span>{{ task }}</span>
+            {% endif %}
+        </div>
         {% endfor %}
+
     </body>
 </html>
