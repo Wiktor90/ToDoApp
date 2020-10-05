@@ -52,7 +52,7 @@ outline: 0px !important;
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
-    
+
 }
 textarea:focus,
 input[type="text"]:focus,
@@ -73,9 +73,17 @@ input:focus::-moz-placeholder{
     color: #179b77;
 }
 
-#messages{
-    background-color: grey;
+#SUCmessages{
+    background-color: #28a745;
     color: #efefef;
     padding: 10px;
     margin-top: 10px;
+    text-align: center;
+}
+#ERmessages{
+    background-color: #e07109;
+    color: #efefef;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
 }

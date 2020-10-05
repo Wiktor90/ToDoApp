@@ -7,4 +7,5 @@ urlpatterns = [
     path('task_delete/<int:pk>/', views.delete_task, name='delete_task'),
     path('login/', views.loginPage, name='login'),
     path('register/', views.registerPage, name='register'),
+    path('logout/', views.logoutUser, name='logout'),
 ]

@@ -1,29 +1,57 @@
 from django.shortcuts import render, redirect
 from .models import Task
 from .forms import TaskForm, CreateAccount
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def registerPage(request):
-    form = CreateAccount()
+    if request.user.is_authenticated == False:
+        form = CreateAccount()
+        if request.method == 'POST':
+            form = CreateAccount(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, '{} - Account successfully created. Please Log In.'.format(user), extra_tags='created')
+                return redirect('login')
+            else:
+                messages.error(request, "Username is owned or Password don't match!")
 
-    if request.method == 'POST':
-        form = CreateAccount(request.POST)
-        if form.is_valid():
-            form.save()
+        context = {'form': form}
+        return render(request, 'todo/register.html', context)
 
-    context = {'form': form}
-    return render(request, 'todo/register.html', context)
+    else:
+        return redirect('tasks_list')
 
 def loginPage(request):
-    context = {}
-    return render(request, 'todo/login.html', context)
+    if request.user.is_authenticated == False:
+        if request.method == 'POST':
+            user = request.POST.get('username')
+            password = request.POST.get('password')
+            account = authenticate(username=user, password=password)
+
+            if account is not None:
+                login(request, account)
+                return redirect('tasks_list')
+            else:
+                messages.error(request, 'Incorrect Password os Username',extra_tags='login')
+
+        context = {}
+        return render(request, 'todo/login.html', context)
+
+    else: 
+        return redirect('tasks_list')
 
 def logoutUser(request):
-    context = {}
-    return redirect(request, 'todo/login.html', context)
+    logout(request)
+    return redirect('login')
 
+@login_required(login_url='login')
 def tasks_list(request):
-    tasks = Task.objects.all()
+    #tasks = Task.objects.all()
+    tasks = Task.objects.filter(owner=request.user)
     form = TaskForm()
 
     if request.method =='POST':
@@ -38,6 +66,7 @@ def tasks_list(request):
     }
     return render(request, 'todo/base.html', context)
 
+@login_required(login_url='login')
 def edit_task(request, pk):
     task = Task.objects.get(pk=pk)
     form = TaskForm(instance=task)
@@ -50,6 +79,7 @@ def edit_task(request, pk):
 
     return render(request, 'todo/edit_task.html', {'form': form})
 
+@login_required(login_url='login')
 def delete_task (request, pk):
     task = Task.objects.get(pk=pk)
     if request.method == 'POST':
