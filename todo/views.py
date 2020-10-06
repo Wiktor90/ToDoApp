@@ -57,7 +57,9 @@ def tasks_list(request):
     if request.method =='POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task_instance = form.save(commit=False)
+            task_instance.owner = request.user
+            task_instance.save()
         return redirect('/')
 
     context = {
