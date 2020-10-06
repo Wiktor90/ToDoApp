@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class TaskForm(forms.ModelForm):
+    title = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Type...'}))
     
     class Meta:
         model = Task
