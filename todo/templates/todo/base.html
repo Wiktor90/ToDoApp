@@ -8,30 +8,50 @@
     </head>
 
     <body>
-        <nav>
-            <span>{{ request.user }}</span>
-            <a href="{% url 'logout' %}">Logout</a>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm mb-4">
+            <div class="container">
+                <a class="navbar-brand" hfer="#">ToDo List Application</a>
+                <div class="ml-3">Hello: {{ request.user }}</div>
+                <div class="logout">
+                    <a href="{% url 'logout' %}"><strong>Logout</strong></a>
+                <div>
+            </div>
         </nav>
 
         <div class="container">
-          <div class="row">
-                <h1>Create Task</h1>
-                <form method="POST" action="{% url 'tasks_list' %}">
-                    {% csrf_token %}
-                    {{ form.title }}
-                    <input type="submit" name="" value="Add Task"> 
-                </form>
-          </div>
-        </div>
-        {% for task in tasks %}
-            <a href="{% url 'edit_task' task.pk %}">Edit</a>
-            <a href="{% url 'delete_task' task.pk %}">Delete</a>
-            {% if task.status == True %}
-            <strike><p>{{ task }}</p></strike>
-            {% else %}
-            <span>{{ task }}</span>
-            {% endif %}
-        {% endfor %}
+            <div class="row">
 
+                <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 task-header">
+                        <h1>Create Task</h1>
+                        
+                        <form  method="POST" action="/">
+                            {% csrf_token %}
+                            
+                            {{form.title}}
+                            <button type="submit" class="btn btn-dark mb-3 btn-sub">Confirm</button> 
+                        </form>
+                </div>
+                
+                <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 center-column">
+
+                        {% for task in tasks %}
+                            <div class="item-row">
+                                {% if task.complete == True %}
+                                <div class="col-sm-7 p-0"><strike>{{task}}</strike></div>
+                                {% else %}
+                                <div class="col-sm-7 p-0 align-bottom">{{task}}</div>
+                                {% endif %}  
+
+                                <div class="col-sm-3 offset-sm-9 p-0 align-middle">
+                                    <div class="d-inline"><a class="btn btn-sm btn-info" href="{% url 'edit_task' task.pk %}">Edit</a></div>
+                                    <div class="d-inline"><a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.pk %}">Delete</a></div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
     </body>
 </html>
+

@@ -6,7 +6,8 @@ html {
     background: #b8b2ae!important;
     color: #efefef;
 }
-.user_card {
+.user_card
+{
     width: 350px;
     margin-top: auto;
     margin-bottom: auto;
@@ -21,39 +22,55 @@ html {
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 }
-.form_container {
+
+.form_container
+{
     margin-top: 20px;
 }
-#form-title{
+
+#form-title
+{
     color: #efefef;  
 }
-.login_btn {
+
+.login_btn
+{
     width: 100%;
     background: #179b77;
     color: #efefef!important;
 }
-.login_btn:focus {
+
+.login_btn:focus
+{
     box-shadow: none !important;
-outline: 0px !important;
+    outline: 0px !important;
 }
-.login_btn:hover {
+
+.login_btn:hover
+{
     background: #1ab188;
 }
-.login_container {
+
+.login_container
+{
     padding: 0 2rem;
 }
-.input-group-text {
+
+.input-group-text
+{
     background: #b8b2ae!important;
     color: rgba(19, 35, 47, 0.9) !important;
     border: 0px !important;
     border-radius: 0.25rem 0 0 0.25rem !important
 }
+
 .input_user,
-.input_pass:focus {
+.input_pass:focus
+{
     box-shadow: none !important;
     outline: 0px !important;
-
 }
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -80,7 +97,9 @@ input:focus::-moz-placeholder{
     margin-top: 10px;
     text-align: center;
 }
-#ERmessages{
+
+#ERmessages
+{
     background-color: #e07109;
     color: #efefef;
     padding: 10px;
