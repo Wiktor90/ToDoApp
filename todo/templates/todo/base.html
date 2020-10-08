@@ -28,30 +28,40 @@
                             {% csrf_token %}
                             
                             {{form.title}}
-                            <button type="submit" class="btn btn-dark mb-3 btn-sub">Confirm</button> 
+                            <button type="submit" class="btn mb-3 btn-sub">Confirm</button> 
                         </form>
                 </div>
-                
-                <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 center-column">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 main-theme">
 
                         {% for task in tasks %}
-                            <div class="item-row">
-                                {% if task.complete == True %}
-                                <div class="col-sm-7 p-0"><strike>{{task}}</strike></div>
+                            <div class="task-row grid-container">
+                                {% if task.status == True %}
+                                <div class="align-bottom cross-txt">{{ task }}</div>
                                 {% else %}
-                                <div class="col-sm-7 p-0 align-bottom">{{task}}</div>
+                                <div class="align-bottom">{{ task }}</div>
                                 {% endif %}  
 
-                                <div class="col-sm-3 offset-sm-9 p-0 align-middle">
+                                <div class="align-middle ml-3">
+                                    <div class="time">{{task.created_time|date:"SHORT_DATE_FORMAT"}} {{task.created_time|time:"h:i a"}}</div>
                                     <div class="d-inline"><a class="btn btn-sm btn-info" href="{% url 'edit_task' task.pk %}">Edit</a></div>
-                                    <div class="d-inline"><a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.pk %}">Delete</a></div>
+                                    
+                                    <form class="d-inline" method="POST" action="{% url 'delete_task' task.pk %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
                                 </div>
-
                             </div>
                         {% endfor %}
                 </div>
             </div>
         </div>
+
+        
     </body>
 </html>
 

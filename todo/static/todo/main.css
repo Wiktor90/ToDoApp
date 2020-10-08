@@ -33,6 +33,8 @@ input[type="text"]
     width: 100%;
     font-size: 18px;
     padding: 3px 12px;
+    background: rgba(19, 35, 47, 0.9);
+    color: #efefef;
 }
 .btn-sub:hover
 {
@@ -50,7 +52,8 @@ input::placeholder {
   color: #b4b2b2;
 }
 
-.center-column{
+.main-theme
+{
     margin: 20px auto;
     padding:20px;
     background-color: rgba(19, 35, 47, 0.9);
@@ -58,25 +61,59 @@ input::placeholder {
     box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
 }
 
-.item-row{
+.task-row
+{
     background-color: #179b77;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     padding: 14px;
     border-radius: 3px;
     color: #efefef;
     font-size: 16px;
 }
 
-.btn-danger{
-    background-color: #ffae19;
-    border-color: #e59400;
+.btn-danger
+{
+    background-color: #771313;
+    border-color: #d4d4d4a6;
+    padding: 5px;
+    min-width: 51px;
 }
 
-.task-txt
+.btn-danger:hover
 {
-    max-width: 70%;
+    border-color: #d4d4d4a6;
 }
+
+.btn-info
+{
+    background-color: rgba(23, 76, 116, 0.9);
+    border-color: #d4d4d4a6;
+    padding: 5px;
+    min-width: 51px;
+}
+
+.btn-info:hover
+{
+    background-color: rgba(7, 112, 192, 0.9);
+    border-color: #d4d4d4a6;
+}
+
 .task-btn
 {
     margin-left: auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.cross-txt
+{
+    text-decoration: line-through;
+}
+.time
+{
+    font-size: 10px;
+    color: #b1f5e3;
+    text-align: center;
 }
