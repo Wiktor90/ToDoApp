@@ -104,8 +104,9 @@ input::placeholder {
 }
 
 .grid-container {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 3fr 1fr;
+    align-items: center;
 }
 .cross-txt
 {
@@ -116,4 +117,49 @@ input::placeholder {
     font-size: 10px;
     color: #b1f5e3;
     text-align: center;
+}
+
+/* EDIT MODE */
+
+input[type="checkbox"]
+{
+    position: relative;
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    background: #c6c6cc;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+    transition: .4s;
+}
+
+input:checked[type="checkbox"]
+{
+    background: rgba(0,0,0,0.75);
+}
+
+input[type="checkbox"]::before
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background: #efefef;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    transform: scale(1.1);
+    transition: .4s;
+}
+
+input:checked[type="checkbox"]::before
+{
+    left:20px;
+}
+
+.form-check
+{
+    padding: 0;
 }

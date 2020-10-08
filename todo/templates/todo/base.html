@@ -41,12 +41,12 @@
                         {% for task in tasks %}
                             <div class="task-row grid-container">
                                 {% if task.status == True %}
-                                <div class="align-bottom cross-txt">{{ task }}</div>
+                                <div class="cross-txt">{{ task }}</div>
                                 {% else %}
-                                <div class="align-bottom">{{ task }}</div>
+                                <div>{{ task }}</div>
                                 {% endif %}  
 
-                                <div class="align-middle ml-3">
+                                <div class="ml-3">
                                     <div class="time">{{task.created_time|date:"SHORT_DATE_FORMAT"}} {{task.created_time|time:"h:i a"}}</div>
                                     <div class="d-inline"><a class="btn btn-sm btn-info" href="{% url 'edit_task' task.pk %}">Edit</a></div>
                                     

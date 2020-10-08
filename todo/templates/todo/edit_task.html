@@ -1,7 +1,40 @@
-<h1>Edit Task</h1>
+{%load static %}
+<html>
+    <head>
+        <title>ToDoApp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'todo/main.css' %}">
+    </head>
 
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" name="Update">
-</form>
+    <body>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm mb-4">
+            <div class="container">
+                <a class="navbar-brand" hfer="#">ToDo List Application</a>
+                <div class="ml-3">Hello: {{ request.user }}</div>
+                <div class="logout">
+                    <a href="{% url 'logout' %}"><strong>Logout</strong></a>
+                <div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 task-header">
+                        <h1>Edit Task</h1>
+                        
+                        <form  method="POST" action="">
+                            {% csrf_token %}
+                            {{ form.title }}
+
+                            <div class="form-check mt-2 mb-3">
+                                <div class="d-inline align-middle">{{ form.status }}</div>
+                                <div class="d-inline align-middle "><label class="form-check-label d-inline align-middle"> Mark As Completed</label></div>
+                            </div>
+                            <button type="submit" class="btn mb-3 btn-sub">Confirm</button> 
+                        </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
