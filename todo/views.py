@@ -50,7 +50,6 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def tasks_list(request):
-    #tasks = Task.objects.all()
     tasks = Task.objects.filter(owner=request.user)
     form = TaskForm()
 
